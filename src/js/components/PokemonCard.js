@@ -1,5 +1,5 @@
 
-export default function PokemonCard(name, image, description, link) {
+export default function PokemonCard(name, image, description, link = false) {
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
@@ -14,7 +14,7 @@ export default function PokemonCard(name, image, description, link) {
         <p class="card-text">
         ${description}  
         </p>
-        <a href="${link}" class="btn btn-warning" target="-blank">Visit</a>
+        <a href="${link}" class="btn btn-warning ${link || "d-none"}" target="-blank">Visit</a>
       </div>
     </div>`;
   
