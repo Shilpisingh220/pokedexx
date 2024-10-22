@@ -38,7 +38,7 @@ function renderFilterPokemons(input) {
     keys: ["name", "abilities"],
     threshold: 0.5,
   };
-  
+
   const fuse = new Fuse(data, options);
 
   const filteredPokemons = fuse.search(input).map((obj) => obj.item);
@@ -62,9 +62,14 @@ function renderFilterPokemons(input) {
 }
 
 // Listen for input
+let debounceTimer;
 inputEl.addEventListener("input", (e) => {
-  const currentInput = e.target.value.toLowerCase().trim();
-  renderFilterPokemons(currentInput);
+  clearTimeout(debounceTimer);
+
+  debounceTimer = setTimeout(() => {
+    const currentInput = e.target.value.toLowerCase().trim();
+    renderFilterPokemons(currentInput);
+  }, 300);
 });
 
 // Add keyboard functionality
